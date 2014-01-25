@@ -4,9 +4,7 @@ class window.Hand extends Backbone.Collection
 
   initialize: (array, @deck, @isDealer) ->
 
-  hit: ->
-    @add(@deck.pop()).last()
-    if @totalScore() > 21 @trigger("endGame")
+  hit: -> @add(@deck.pop()).last()
 
   # stand: ->
     # @.trigger("endGame")

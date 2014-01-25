@@ -13,6 +13,8 @@ class window.AppView extends Backbone.View
     "click .hit-button": ->
       @model.get('playerHand').hit()
       @dealerPlay()
+      if @model.get('playerHand').totalScore() >= 21 || @model.get('dealerHand').totalScore() >= 21
+        @endGame()
     "click .stand-button": -> @endGame()
     "click .new-game": -> @restart()
 
@@ -32,7 +34,6 @@ class window.AppView extends Backbone.View
   dealerPlay: ->
     hand = @model.get('dealerHand')
     currentScore = hand.totalScore()
-    console.log(currentScore)
     if currentScore < 17 then hand.hit()
 
   endGame: ->
